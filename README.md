@@ -24,16 +24,14 @@ Effortlessly query AI models (starting with Google's Gemini) and receive strongl
 Install the package via NuGet Package Manager:
 
 ```powershell
-Install-Package YourPackageName
+Install-Package AI.StructuredOutput
 ```
 
 Or via the .NET CLI:
 
 ```bash
-dotnet add package YourPackageName
+dotnet add package AI.StructuredOutput
 ```
-
-**(Remember to replace `YourPackageName` with your actual package name once published!)**
 
 ## Getting Started
 
