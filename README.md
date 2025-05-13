@@ -1,6 +1,6 @@
 # .NET AI Structured Output Generator
 
-[![NuGet version (YourPackageName)](https://img.shields.io/nuget/v/YourPackageName.svg?style=flat-square)](https://www.nuget.org/packages/YourPackageName/)
+[![NuGet version (YourPackageName)](https://img.shields.io/nuget/v/AI.StructuredOutput.svg?style=flat-square)](https://www.nuget.org/packages/AI.StructuredOutput/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) <!-- Choose your license -->
 
 Effortlessly query AI models (starting with Google's Gemini) and receive strongly-typed, structured C# objects as output. Instead of parsing messy JSON or string responses, define your desired C# class, and let the AI fill it in for you!
