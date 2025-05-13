@@ -16,7 +16,7 @@ Effortlessly query AI models (starting with Google's Gemini) and receive strongl
 
 ## Prerequisites
 
-*   .NET 6.0 or later.
+*   .NET 8.0 or later.
 *   A Google Gemini API Key. You can obtain one from [Google AI Studio](https://aistudio.google.com/app/apikey).
 
 ## Installation
