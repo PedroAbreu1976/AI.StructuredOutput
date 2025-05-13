@@ -12,9 +12,15 @@ using IHost host = Host.CreateDefaultBuilder(args)
             .Build();
 await host.StartAsync();
 
+string? city = null;
+while (string.IsNullOrWhiteSpace(city))
+{
+    Console.Write("Type a city to query the current weather: ");
+    city = Console.ReadLine();
+}
 
 var service = host.Services.GetRequiredService<IAiStructuredOutputGenerator>();
-var weatherInfo = await service.AskAsync<WheatherInfo>("What´s the weather like in Angra do Heroismo");
+var weatherInfo = await service.AskAsync<WheatherInfo>($"What´s the weather like in {city}?");
 if(weatherInfo == null)
 {
     Console.WriteLine("Oops, something went wrong.");

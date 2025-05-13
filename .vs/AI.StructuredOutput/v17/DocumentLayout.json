@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{7A0AB5FC-0329-467F-83E3-F818EDDDAD0C}|AI.StructuredOutput.Example\\AI.StructuredOutput.Example.csproj|solutionrelative:ai.structuredoutput.example\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{609DCD09-DA10-4EF9-A9D3-CAAF64A19A76}|AI.StructuredOutput\\AI.StructuredOutput.csproj|c:\\users\\desig\\source\\repos\\ai.structuredoutput\\ai.structuredoutput\\engines\\gemini\\geministructuredoutputgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{609DCD09-DA10-4EF9-A9D3-CAAF64A19A76}|AI.StructuredOutput\\AI.StructuredOutput.csproj|solutionrelative:ai.structuredoutput\\engines\\gemini\\geministructuredoutputgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{609DCD09-DA10-4EF9-A9D3-CAAF64A19A76}|AI.StructuredOutput\\AI.StructuredOutput.csproj|c:\\users\\desig\\source\\repos\\ai.structuredoutput\\ai.structuredoutput\\schema\\decorators\\descriptionresponseschemadecorator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{609DCD09-DA10-4EF9-A9D3-CAAF64A19A76}|AI.StructuredOutput\\AI.StructuredOutput.csproj|solutionrelative:ai.structuredoutput\\schema\\decorators\\descriptionresponseschemadecorator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{609DCD09-DA10-4EF9-A9D3-CAAF64A19A76}|AI.StructuredOutput\\AI.StructuredOutput.csproj|c:\\users\\desig\\source\\repos\\ai.structuredoutput\\ai.structuredoutput\\engines\\gemini\\geministructuredoutputgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{609DCD09-DA10-4EF9-A9D3-CAAF64A19A76}|AI.StructuredOutput\\AI.StructuredOutput.csproj|solutionrelative:ai.structuredoutput\\engines\\gemini\\geministructuredoutputgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{609DCD09-DA10-4EF9-A9D3-CAAF64A19A76}|AI.StructuredOutput\\AI.StructuredOutput.csproj|c:\\users\\desig\\source\\repos\\ai.structuredoutput\\ai.structuredoutput\\schema\\builders\\enumschemabuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -38,13 +38,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "GeminiStructuredOutputGenerator.cs",
               "DocumentMoniker": "C:\\Users\\desig\\source\\repos\\AI.StructuredOutput\\AI.StructuredOutput\\Engines\\Gemini\\GeminiStructuredOutputGenerator.cs",
               "RelativeDocumentMoniker": "AI.StructuredOutput\\Engines\\Gemini\\GeminiStructuredOutputGenerator.cs",
               "ToolTip": "C:\\Users\\desig\\source\\repos\\AI.StructuredOutput\\AI.StructuredOutput\\Engines\\Gemini\\GeminiStructuredOutputGenerator.cs",
               "RelativeToolTip": "AI.StructuredOutput\\Engines\\Gemini\\GeminiStructuredOutputGenerator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-13T11:52:48.095Z",
               "EditorCaption": ""
@@ -77,7 +77,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "DescriptionResponseSchemaDecorator.cs",
               "DocumentMoniker": "C:\\Users\\desig\\source\\repos\\AI.StructuredOutput\\AI.StructuredOutput\\Schema\\Decorators\\DescriptionResponseSchemaDecorator.cs",
               "RelativeDocumentMoniker": "AI.StructuredOutput\\Schema\\Decorators\\DescriptionResponseSchemaDecorator.cs",
@@ -94,9 +94,9 @@
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\desig\\source\\repos\\AI.StructuredOutput\\AI.StructuredOutput.Example\\Program.cs",
               "RelativeDocumentMoniker": "AI.StructuredOutput.Example\\Program.cs",
-              "ToolTip": "C:\\Users\\desig\\source\\repos\\AI.StructuredOutput\\AI.StructuredOutput.Example\\Program.cs",
-              "RelativeToolTip": "AI.StructuredOutput.Example\\Program.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAAABwAAABHAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\desig\\source\\repos\\AI.StructuredOutput\\AI.StructuredOutput.Example\\Program.cs*",
+              "RelativeToolTip": "AI.StructuredOutput.Example\\Program.cs*",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABUAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-13T10:44:02.707Z",
               "EditorCaption": ""
