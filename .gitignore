@@ -407,3 +407,7 @@ appsettings.UAT.json
 
 # Exclude local folders
 /.vs/
+/.vs/AI.StructuredOutput/CopilotIndices/17.12.38.29086/SemanticSymbols.db-wal
+/.vs/AI.StructuredOutput/v17/.suo
+/.vs/AI.StructuredOutput/v17/DocumentLayout.backup.json
+/.vs/AI.StructuredOutput/v17/DocumentLayout.json
