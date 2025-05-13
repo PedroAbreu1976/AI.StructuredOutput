@@ -1,6 +1,6 @@
 # .NET AI Structured Output Generator
 
-[![NuGet version (YourPackageName)](https://img.shields.io/nuget/v/YourPackageName.svg?style=flat-square)](https://www.nuget.org/packages/YourPackageName/)
+[![NuGet version (YourPackageName)](https://img.shields.io/nuget/v/AI.StructuredOutput.svg?style=flat-square)](https://www.nuget.org/packages/AI.StructuredOutput/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) <!-- Choose your license -->
 
 Effortlessly query AI models (starting with Google's Gemini) and receive strongly-typed, structured C# objects as output. Instead of parsing messy JSON or string responses, define your desired C# class, and let the AI fill it in for you!
@@ -16,7 +16,7 @@ Effortlessly query AI models (starting with Google's Gemini) and receive strongl
 
 ## Prerequisites
 
-*   .NET 6.0 or later.
+*   .NET 8.0 or later.
 *   A Google Gemini API Key. You can obtain one from [Google AI Studio](https://aistudio.google.com/app/apikey).
 
 ## Installation
@@ -39,30 +39,13 @@ dotnet add package YourPackageName
 
 ### 1. Configure Services
 
-In your `Program.cs` or startup configuration, add the Gemini structured output generator:
+When registering the services, add the Gemini structured output generator:
 
 ```csharp
-using AI.StructuredOutput; // Assuming this is your root namespace
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using AI.StructuredOutput;
 
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        using IHost host = Host.CreateDefaultBuilder(args)
-            .ConfigureServices(services =>
-            {
-                // Replace "YOUR_GEMINI_API_KEY" with your actual API key
-                services.AddGeminiStructuredOutputGenerator("YOUR_GEMINI_API_KEY");
-            })
-            .Build();
-
-        await host.StartAsync();
-
-        // ... your application logic
-    }
-}
+//services is IServiceCollection
+services.AddGeminiStructuredOutputGenerator("YOUR_GEMINI_API_KEY");
 ```
 **Important:** Securely manage your API key. Consider using user secrets, environment variables, or a configuration provider for production applications.
 
@@ -71,9 +54,6 @@ public class Program
 Create a C# class that represents the structure you want the AI to populate. Use `[Description]` attributes to guide the AI on what each property means.
 
 ```csharp
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations; // For [Range]
-
 public class WheatherInfo // Renamed from WheatherInfo for correct spelling
 {
     [Description("The city and country, e.g., 'London, UK' or 'Paris, France'")]
@@ -85,8 +65,8 @@ public class WheatherInfo // Renamed from WheatherInfo for correct spelling
     [Description("The current temperature in Celcius")]
     public decimal Celcius { get; set; }
 
-    [Description("A very short, friendly greeting or a brief, light-hearted comment about the weather. For example: 'Enjoy the sunshine!' or 'Stay dry!' Do not make a joke, just say something like ´good morning´")] // Clarified instruction for AI
-    public string Joke { get; set; } // Consider renaming to `FriendlyMessage` or similar if "Joke" is misleading
+    [Description("Do not make a joke, just say something like ´good morning´")] 
+    public string Joke { get; set; }
 
     [Description("The local date and time at the specified location when these weather conditions were recorded")]
     public DateTime TimeStamp { get; set; }
@@ -94,7 +74,7 @@ public class WheatherInfo // Renamed from WheatherInfo for correct spelling
     [Description("The current wind conditions")]
     public WindCondition WindCondition { get; set; }
 
-    [Description("Assign a random decimal number between 0.0 and 1.0 (inclusive)")]
+    [Description("Assign a random number")]
     [Range(0.0, 1.0)]
     public double Test { get; set; } // Perhaps rename to `RandomValue` for clarity
 }
@@ -116,48 +96,29 @@ public enum WindCondition
 Retrieve the `IAiStructuredOutputGenerator` service and use the `AskAsync<T>()` method:
 
 ```csharp
-// (Continuing from Program.cs Main method or another part of your application)
-
 var service = host.Services.GetRequiredService<IAiStructuredOutputGenerator>();
 
-string? city = null;
-while (string.IsNullOrWhiteSpace(city))
-{
-    Console.Write("Type a city to query the current weather: ");
-    city = Console.ReadLine();
-}
+var city = "Angra do Heroismo";
 
-Console.WriteLine($"Fetching weather for {city}...");
+Debug.WriteLine($"Fetching weather for {city}...");
 var weatherInfo = await service.AskAsync<WheatherInfo>($"What´s the weather like in {city}?");
 
-if (weatherInfo == null)
-{
-    Console.WriteLine("Oops, something went wrong. The AI couldn't provide structured data.");
-}
-else
-{
-    Console.WriteLine($"--- Weather in {weatherInfo.Location} ({weatherInfo.TimeStamp}) ---");
-    Console.WriteLine($"Temperature: {weatherInfo.Celcius}°C / {weatherInfo.Fahrenheit}°F");
-    Console.WriteLine($"Wind: {weatherInfo.WindCondition}");
-    Console.WriteLine($"AI's friendly note: {weatherInfo.Joke}");
-    Console.WriteLine($"Random Test Number: {weatherInfo.Test}");
-}
-
-Console.Write("Press any key to close...");
-Console.ReadKey();
+Debug.WriteLine($"--- Weather in {weatherInfo.Location} ({weatherInfo.TimeStamp}) ---");
+Debug.WriteLine($"Temperature: {weatherInfo.Celcius}°C / {weatherInfo.Fahrenheit}°F");
+Debug.WriteLine($"Wind: {weatherInfo.WindCondition}");
+Debug.WriteLine($"Not a joke: {weatherInfo.Joke}");
+Debug.WriteLine($"Random Test Number (between 0.0 and 1.0): {weatherInfo.Test}");
 ```
 
 ### Example Output
 
 ```
-Type a city to query the current weather: London
-Fetching weather for London...
---- Weather in London, UK (2023-10-27 10:30:00) ---
+Fetching weather for Angra do Heroismo...
+--- Weather in Angra do Heroismo, Portugal (2023-10-27 10:30:00) ---
 Temperature: 12°C / 53.6°F
 Wind: LightWind
 AI's friendly note: Good morning!
 Random Test Number: 0.734
-Press any key to close...
 ```
 *(Note: Actual output will vary based on the AI's response.)*
 
@@ -173,4 +134,4 @@ The SDK takes your C# class definition and uses the property names, types, and `
 
 ## License
 
-Free for all
+MIT
