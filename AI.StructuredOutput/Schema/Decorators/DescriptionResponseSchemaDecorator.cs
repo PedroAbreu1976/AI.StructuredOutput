@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Reflection;
+using System.Text;
 
 namespace AI.StructuredOutput.Schema.Decorators
 {
@@ -8,7 +9,20 @@ namespace AI.StructuredOutput.Schema.Decorators
         public override void Decorate(ResponseSchema schema, PropertyInfo propertyInfo)
         {
             var attribute = propertyInfo.GetCustomAttribute<DescriptionAttribute>();
-            schema.Description = attribute?.Description;
+            StringBuilder sb = new StringBuilder();
+            sb.Append(attribute?.Description);
+            if (propertyInfo.PropertyType.IsEnum)
+            {
+                sb.AppendLine(":");
+                var enumInfo = propertyInfo.PropertyType.GetEnumInfo();
+                foreach (var item in enumInfo)
+                {
+                    sb.AppendLine($"* '{item.Name}' - {item.Description ?? item.Name}");
+                }
+            }
+            schema.Description = sb.ToString();
         }
+
+
     }
 }

@@ -10,9 +10,8 @@
         {
             return new ResponseSchema
             {
-                Type = "integer",
-                Enum = Enum.GetValues(type).Cast<int>().ToArray(),
-                Format = "int32",
+                Type = "string",
+                Enum = Enum.GetNames(type),
             };
         }
     }

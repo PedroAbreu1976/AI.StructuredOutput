@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 using AI.StructuredOutput.Engines.Gemini.Model;
 
 namespace AI.StructuredOutput.Engines.Gemini
@@ -12,12 +13,17 @@ namespace AI.StructuredOutput.Engines.Gemini
             {
                 request.AddFile(file.Name, file);
             }
+
             var response = await geminiApiService.QueryAsync(request);
             var json = response.Candidates
                     .SelectMany(x => x.Content.Parts)
                     .Select(x => x.Text)
                     .First();
-            return JsonSerializer.Deserialize<TResult>(json);
+            return JsonSerializer.Deserialize<TResult>(json, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                Converters = { new JsonStringEnumConverter() }
+            });
         }
     }
 }

@@ -14,7 +14,7 @@ namespace AI.StructuredOutput.Schema
 
         [JsonPropertyName("enum")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public int[]? Enum { get; set; }
+        public string[]? Enum { get; set; }
 
         [JsonPropertyName("nullable")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
