@@ -4,10 +4,28 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>AI structured Outputs</Title>
+    <Authors>Pedro Abreu</Authors>
+    <Company>None</Company>
+    <Description>Effortlessly query AI models (starting with Google's Gemini) and receive strongly-typed, structured C# objects as output. Instead of parsing messy JSON or string responses, define your desired C# class, and let the AI fill it in for you!</Description>
+    <Copyright>none</Copyright>
+    <PackageProjectUrl>https://github.com/PedroAbreu1976/AI.StructuredOutput</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/PedroAbreu1976/AI.StructuredOutput</RepositoryUrl>
+    <PackageTags>Gemini;AI;StructuredOutput</PackageTags>
+    <IncludeSymbols>True</IncludeSymbols>
   </PropertyGroup>
 
   <ItemGroup>
     <Folder Include="Schema\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
