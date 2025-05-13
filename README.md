@@ -39,30 +39,13 @@ dotnet add package YourPackageName
 
 ### 1. Configure Services
 
-In your `Program.cs` or startup configuration, add the Gemini structured output generator:
+When registering the services, add the Gemini structured output generator:
 
 ```csharp
-using AI.StructuredOutput; // Assuming this is your root namespace
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using AI.StructuredOutput;
 
-public class Program
-{
-    public static async Task Main(string[] args)
-    {
-        using IHost host = Host.CreateDefaultBuilder(args)
-            .ConfigureServices(services =>
-            {
-                // Replace "YOUR_GEMINI_API_KEY" with your actual API key
-                services.AddGeminiStructuredOutputGenerator("YOUR_GEMINI_API_KEY");
-            })
-            .Build();
-
-        await host.StartAsync();
-
-        // ... your application logic
-    }
-}
+//services is IServiceCollection
+services.AddGeminiStructuredOutputGenerator("YOUR_GEMINI_API_KEY");
 ```
 **Important:** Securely manage your API key. Consider using user secrets, environment variables, or a configuration provider for production applications.
 
@@ -71,9 +54,6 @@ public class Program
 Create a C# class that represents the structure you want the AI to populate. Use `[Description]` attributes to guide the AI on what each property means.
 
 ```csharp
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations; // For [Range]
-
 public class WheatherInfo // Renamed from WheatherInfo for correct spelling
 {
     [Description("The city and country, e.g., 'London, UK' or 'Paris, France'")]
@@ -116,37 +96,29 @@ public enum WindCondition
 Retrieve the `IAiStructuredOutputGenerator` service and use the `AskAsync<T>()` method:
 
 ```csharp
-// (Continuing from Program.cs Main method or another part of your application)
-
 var service = host.Services.GetRequiredService<IAiStructuredOutputGenerator>();
 
-Console.Write("Type a city to query the current weather: ");
-var city = Console.ReadLine();
+var city = "Angra do Heroismo";
 
-Console.WriteLine($"Fetching weather for {city}...");
+Debug.WriteLine($"Fetching weather for {city}...");
 var weatherInfo = await service.AskAsync<WheatherInfo>($"What´s the weather like in {city}?");
 
-Console.WriteLine($"--- Weather in {weatherInfo.Location} ({weatherInfo.TimeStamp}) ---");
-Console.WriteLine($"Temperature: {weatherInfo.Celcius}°C / {weatherInfo.Fahrenheit}°F");
-Console.WriteLine($"Wind: {weatherInfo.WindCondition}");
-Console.WriteLine($"Not a joke: {weatherInfo.Joke}");
-Console.WriteLine($"Random Test Number (between 0.0 and 1.0): {weatherInfo.Test}");
-
-Console.Write("Press any key to close...");
-Console.ReadKey();
+Debug.WriteLine($"--- Weather in {weatherInfo.Location} ({weatherInfo.TimeStamp}) ---");
+Debug.WriteLine($"Temperature: {weatherInfo.Celcius}°C / {weatherInfo.Fahrenheit}°F");
+Debug.WriteLine($"Wind: {weatherInfo.WindCondition}");
+Debug.WriteLine($"Not a joke: {weatherInfo.Joke}");
+Debug.WriteLine($"Random Test Number (between 0.0 and 1.0): {weatherInfo.Test}");
 ```
 
 ### Example Output
 
 ```
-Type a city to query the current weather: London
-Fetching weather for London...
---- Weather in London, UK (2023-10-27 10:30:00) ---
+Fetching weather for Angra do Heroismo...
+--- Weather in Angra do Heroismo, Portugal (2023-10-27 10:30:00) ---
 Temperature: 12°C / 53.6°F
 Wind: LightWind
 AI's friendly note: Good morning!
 Random Test Number: 0.734
-Press any key to close...
 ```
 *(Note: Actual output will vary based on the AI's response.)*
 
@@ -162,4 +134,4 @@ The SDK takes your C# class definition and uses the property names, types, and `
 
 ## License
 
-Free for all
+MIT
