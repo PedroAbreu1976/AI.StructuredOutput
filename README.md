@@ -85,8 +85,8 @@ public class WheatherInfo // Renamed from WheatherInfo for correct spelling
     [Description("The current temperature in Celcius")]
     public decimal Celcius { get; set; }
 
-    [Description("A very short, friendly greeting or a brief, light-hearted comment about the weather. For example: 'Enjoy the sunshine!' or 'Stay dry!' Do not make a joke, just say something like ´good morning´")] // Clarified instruction for AI
-    public string Joke { get; set; } // Consider renaming to `FriendlyMessage` or similar if "Joke" is misleading
+    [Description("Do not make a joke, just say something like ´good morning´")] 
+    public string Joke { get; set; }
 
     [Description("The local date and time at the specified location when these weather conditions were recorded")]
     public DateTime TimeStamp { get; set; }
@@ -94,7 +94,7 @@ public class WheatherInfo // Renamed from WheatherInfo for correct spelling
     [Description("The current wind conditions")]
     public WindCondition WindCondition { get; set; }
 
-    [Description("Assign a random decimal number between 0.0 and 1.0 (inclusive)")]
+    [Description("Assign a random number")]
     [Range(0.0, 1.0)]
     public double Test { get; set; } // Perhaps rename to `RandomValue` for clarity
 }
@@ -120,28 +120,17 @@ Retrieve the `IAiStructuredOutputGenerator` service and use the `AskAsync<T>()` 
 
 var service = host.Services.GetRequiredService<IAiStructuredOutputGenerator>();
 
-string? city = null;
-while (string.IsNullOrWhiteSpace(city))
-{
-    Console.Write("Type a city to query the current weather: ");
-    city = Console.ReadLine();
-}
+Console.Write("Type a city to query the current weather: ");
+var city = Console.ReadLine();
 
 Console.WriteLine($"Fetching weather for {city}...");
 var weatherInfo = await service.AskAsync<WheatherInfo>($"What´s the weather like in {city}?");
 
-if (weatherInfo == null)
-{
-    Console.WriteLine("Oops, something went wrong. The AI couldn't provide structured data.");
-}
-else
-{
-    Console.WriteLine($"--- Weather in {weatherInfo.Location} ({weatherInfo.TimeStamp}) ---");
-    Console.WriteLine($"Temperature: {weatherInfo.Celcius}°C / {weatherInfo.Fahrenheit}°F");
-    Console.WriteLine($"Wind: {weatherInfo.WindCondition}");
-    Console.WriteLine($"AI's friendly note: {weatherInfo.Joke}");
-    Console.WriteLine($"Random Test Number: {weatherInfo.Test}");
-}
+Console.WriteLine($"--- Weather in {weatherInfo.Location} ({weatherInfo.TimeStamp}) ---");
+Console.WriteLine($"Temperature: {weatherInfo.Celcius}°C / {weatherInfo.Fahrenheit}°F");
+Console.WriteLine($"Wind: {weatherInfo.WindCondition}");
+Console.WriteLine($"Not a joke: {weatherInfo.Joke}");
+Console.WriteLine($"Random Test Number (between 0.0 and 1.0): {weatherInfo.Test}");
 
 Console.Write("Press any key to close...");
 Console.ReadKey();
