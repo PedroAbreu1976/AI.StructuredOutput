@@ -3,6 +3,9 @@
 [![NuGet version (YourPackageName)](https://img.shields.io/nuget/v/AI.StructuredOutput.svg?style=flat-square)](https://www.nuget.org/packages/AI.StructuredOutput/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) <!-- Choose your license -->
 
+IMPORTANT:
+This code is no longer useful - This code was written way back when .NET AI Extensions didn't support structured outputs
+
 Effortlessly query AI models (starting with Google's Gemini) and receive strongly-typed, structured C# objects as output. Instead of parsing messy JSON or string responses, define your desired C# class, and let the AI fill it in for you!
 
 ## Features
